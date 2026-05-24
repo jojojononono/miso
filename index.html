@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miso — Toller Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Nova Scotia Duck Tolling Retriever</p>
+      <h1>Miso</h1>
+      <img class="hero-photo" src="images/IMG_2683.jpeg" alt="Miso" width="160" height="160" />
+      <p class="birthday">Born <time datetime="2026-03-10">10 March 2026</time></p>
+      <div class="age-display" id="age-display" aria-live="polite">
+        <span class="age-value" id="age-value">—</span>
+        <span class="age-label">old</span>
+      </div>
+      <p class="age-detail" id="age-detail"></p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card" id="health">
+      <div class="card-header">
+        <h2>Health schedule</h2>
+        <p class="subtitle">Vaccinations & deworming</p>
+      </div>
+      <div class="health-grid" id="health-grid"></div>
+    </section>
+
+    <section class="card" id="feeding">
+      <div class="card-header">
+        <h2>Today's kibble schedule</h2>
+        <p class="subtitle" id="feeding-subtitle">Purina Pro Plan Puppy · dry food only</p>
+      </div>
+      <div class="feeding-meta" id="feeding-meta"></div>
+      <ul class="schedule" id="schedule"></ul>
+      <details class="feeding-notes">
+        <summary>How this schedule is calculated</summary>
+        <p id="feeding-explanation"></p>
+      </details>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <h2>Topics to track</h2>
+        <p class="subtitle">Quick overview of what matters for Miso right now</p>
+      </div>
+      <div class="topics-grid" id="topics-grid"></div>
+    </section>
+
+    <section class="card checklist-card">
+      <div class="card-header">
+        <h2>This week's focus</h2>
+        <p class="subtitle">Editable checklist — saved in your browser</p>
+      </div>
+      <ul class="checklist" id="checklist"></ul>
+      <form class="checklist-add" id="checklist-form">
+        <input type="text" id="checklist-input" placeholder="Add a reminder…" maxlength="120" />
+        <button type="submit">Add</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Miso tracker · Last updated <span id="build-date"></span></p>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
