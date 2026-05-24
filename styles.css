@@ -165,8 +165,9 @@ input {
   position: absolute;
   left: 1rem;
   bottom: 1rem;
+  min-width: 17.5rem;
   max-width: min(100% - 2rem, 320px);
-  padding: 1rem 1.1rem;
+  padding: 1rem 1.25rem 1rem 1.1rem;
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
@@ -188,6 +189,7 @@ input {
   font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.2;
+  font-variant-numeric: tabular-nums;
 }
 
 .hero-age-detail {
@@ -195,6 +197,7 @@ input {
   font-size: 0.82rem;
   color: var(--muted);
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
 .hero-birthday {

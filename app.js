@@ -34,8 +34,9 @@ function formatAgeDetail(from, to) {
   const hours = Math.floor((ms % 86400000) / 3600000);
   const minutes = Math.floor((ms % 3600000) / 60000);
   const seconds = Math.floor((ms % 60000) / 1000);
+  const pad = (n) => String(n).padStart(2, "0");
 
-  return `${weeks} weeks · ${hours}h ${minutes}m ${seconds}s since birth`;
+  return `${weeks} weeks · ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s since birth`;
 }
 
 function updateAge() {
