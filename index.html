@@ -13,17 +13,7 @@
   <header class="site-header">
     <div class="page-wrap header-inner">
       <a class="logo" href="#">MISO</a>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
-        <span></span>
-        <span></span>
-      </button>
     </div>
-    <nav class="mobile-menu" id="mobile-menu" hidden>
-      <a href="#health">Health</a>
-      <a href="#feeding">Feeding</a>
-      <a href="#topics">Topics</a>
-      <a href="#focus">Focus</a>
-    </nav>
   </header>
 
   <section class="hero">
@@ -34,7 +24,7 @@
       <div class="hero-visual">
         <img class="hero-photo" src="images/IMG_2683.jpeg" alt="Miso sitting in the garden" width="1200" height="720" />
         <div class="hero-age-card" aria-live="polite">
-          <p class="hero-age-label">Currently</p>
+          <p class="hero-age-label" id="age-label">Currently</p>
           <p class="hero-age-value" id="age-value">—</p>
           <p class="hero-age-detail" id="age-detail"></p>
           <p class="hero-birthday">Born <time datetime="2026-03-10">10 March 2026</time></p>
@@ -42,13 +32,6 @@
       </div>
     </div>
   </section>
-
-  <nav class="pill-nav page-wrap" aria-label="Page sections">
-    <a class="pill-link is-active" href="#health">Health</a>
-    <a class="pill-link" href="#feeding">Feeding</a>
-    <a class="pill-link" href="#topics">Topics</a>
-    <a class="pill-link" href="#focus">Focus</a>
-  </nav>
 
   <main class="page-wrap main-content">
     <section class="panel" id="health">
@@ -59,6 +42,63 @@
       <div class="panel-body" id="health-body">
         <p class="panel-lead">Vaccinations &amp; deworming — what's done and what's next.</p>
         <div class="health-grid" id="health-grid"></div>
+      </div>
+    </section>
+
+    <section class="panel" id="focus">
+      <button class="panel-head" type="button" aria-expanded="true" aria-controls="focus-body">
+        <span class="panel-title">This week's focus</span>
+        <span class="panel-toggle"><span class="toggle-open">Open</span><span class="toggle-close">Close</span></span>
+      </button>
+      <div class="panel-body" id="focus-body">
+        <p class="panel-lead">Editable checklist — saved in your browser.</p>
+        <ul class="checklist" id="checklist"></ul>
+        <form class="checklist-add" id="checklist-form">
+          <input type="text" id="checklist-input" placeholder="Add a reminder…" maxlength="120" />
+          <button type="submit">Add</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="page-wrap main-content age-content">
+    <section class="timeline-section" aria-label="Age timeline">
+      <div class="timeline-header">
+        <div>
+          <p class="timeline-eyebrow" id="timeline-mode">Current age</p>
+          <p class="timeline-status" id="timeline-status">—</p>
+        </div>
+        <button class="timeline-reset" type="button" id="timeline-reset" hidden>Back to today</button>
+      </div>
+
+      <div class="timeline-track">
+        <input
+          type="range"
+          class="timeline-slider"
+          id="timeline-slider"
+          min="0"
+          max="18"
+          step="1"
+          aria-valuemin="0"
+          aria-valuemax="18"
+          aria-describedby="timeline-status"
+        />
+        <div class="timeline-rail" id="timeline-rail">
+          <div class="timeline-markers" aria-hidden="true">
+            <span data-month="0"></span>
+            <span data-month="4"></span>
+            <span data-month="6"></span>
+            <span data-month="12"></span>
+            <span data-month="18"></span>
+          </div>
+          <div class="timeline-labels" aria-hidden="true">
+            <span class="timeline-tick" data-month="0">Birth</span>
+            <span class="timeline-tick" data-month="4">4 mo</span>
+            <span class="timeline-tick" data-month="6">6 mo</span>
+            <span class="timeline-tick" data-month="12">12 mo</span>
+            <span class="timeline-tick" data-month="18">18 mo</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -84,26 +124,11 @@
         <span class="panel-toggle"><span class="toggle-open">Open</span><span class="toggle-close">Close</span></span>
       </button>
       <div class="panel-body" id="topics-body" hidden>
-        <p class="panel-lead">What matters for Miso right now — training, socialisation, grooming and more.</p>
+        <p class="panel-lead" id="topics-lead">What matters for Miso right now — training, socialisation, grooming and more.</p>
         <div class="topics-grid" id="topics-grid"></div>
       </div>
     </section>
-
-    <section class="panel" id="focus">
-      <button class="panel-head" type="button" aria-expanded="false" aria-controls="focus-body">
-        <span class="panel-title">This week's focus</span>
-        <span class="panel-toggle"><span class="toggle-open">Open</span><span class="toggle-close">Close</span></span>
-      </button>
-      <div class="panel-body" id="focus-body" hidden>
-        <p class="panel-lead">Editable checklist — saved in your browser.</p>
-        <ul class="checklist" id="checklist"></ul>
-        <form class="checklist-add" id="checklist-form">
-          <input type="text" id="checklist-input" placeholder="Add a reminder…" maxlength="120" />
-          <button type="submit">Add</button>
-        </form>
-      </div>
-    </section>
-  </main>
+  </div>
 
   <footer class="site-footer">
     <div class="page-wrap footer-inner">
