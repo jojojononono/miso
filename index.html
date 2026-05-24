@@ -6,69 +6,110 @@
   <title>Miso — Toller Tracker</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="hero">
-    <div class="hero-inner">
-      <p class="eyebrow">Nova Scotia Duck Tolling Retriever</p>
-      <h1>Miso</h1>
-      <img class="hero-photo" src="images/IMG_2683.jpeg" alt="Miso" width="160" height="160" />
-      <p class="birthday">Born <time datetime="2026-03-10">10 March 2026</time></p>
-      <div class="age-display" id="age-display" aria-live="polite">
-        <span class="age-value" id="age-value">—</span>
-        <span class="age-label">old</span>
-      </div>
-      <p class="age-detail" id="age-detail"></p>
+  <header class="site-header">
+    <div class="page-wrap header-inner">
+      <a class="logo" href="#">MISO</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span></span>
+        <span></span>
+      </button>
     </div>
+    <nav class="mobile-menu" id="mobile-menu" hidden>
+      <a href="#health">Health</a>
+      <a href="#feeding">Feeding</a>
+      <a href="#topics">Topics</a>
+      <a href="#focus">Focus</a>
+    </nav>
   </header>
 
-  <main class="container">
-    <section class="card" id="health">
-      <div class="card-header">
-        <h2>Health schedule</h2>
-        <p class="subtitle">Vaccinations & deworming</p>
+  <section class="hero">
+    <div class="page-wrap">
+      <p class="hero-tag">Miso — Nova Scotia Duck Tolling Retriever</p>
+      <h1 class="hero-title">Raising a Toller w/ Care &amp; Routine</h1>
+
+      <div class="hero-visual">
+        <img class="hero-photo" src="images/IMG_2683.jpeg" alt="Miso sitting in the garden" width="1200" height="720" />
+        <div class="hero-age-card" aria-live="polite">
+          <p class="hero-age-label">Currently</p>
+          <p class="hero-age-value" id="age-value">—</p>
+          <p class="hero-age-detail" id="age-detail"></p>
+          <p class="hero-birthday">Born <time datetime="2026-03-10">10 March 2026</time></p>
+        </div>
       </div>
-      <div class="health-grid" id="health-grid"></div>
+    </div>
+  </section>
+
+  <nav class="pill-nav page-wrap" aria-label="Page sections">
+    <a class="pill-link is-active" href="#health">Health</a>
+    <a class="pill-link" href="#feeding">Feeding</a>
+    <a class="pill-link" href="#topics">Topics</a>
+    <a class="pill-link" href="#focus">Focus</a>
+  </nav>
+
+  <main class="page-wrap main-content">
+    <section class="panel" id="health">
+      <button class="panel-head" type="button" aria-expanded="true" aria-controls="health-body">
+        <span class="panel-title">Health schedule</span>
+        <span class="panel-toggle"><span class="toggle-open">Open</span><span class="toggle-close">Close</span></span>
+      </button>
+      <div class="panel-body" id="health-body">
+        <p class="panel-lead">Vaccinations &amp; deworming — what's done and what's next.</p>
+        <div class="health-grid" id="health-grid"></div>
+      </div>
     </section>
 
-    <section class="card" id="feeding">
-      <div class="card-header">
-        <h2>Today's kibble schedule</h2>
-        <p class="subtitle" id="feeding-subtitle">Purina Pro Plan Puppy · dry food only</p>
+    <section class="panel" id="feeding">
+      <button class="panel-head" type="button" aria-expanded="false" aria-controls="feeding-body">
+        <span class="panel-title">Kibble schedule</span>
+        <span class="panel-toggle"><span class="toggle-open">Open</span><span class="toggle-close">Close</span></span>
+      </button>
+      <div class="panel-body" id="feeding-body" hidden>
+        <p class="panel-lead" id="feeding-subtitle">Purina Pro Plan Puppy · dry food only</p>
+        <div class="feeding-meta" id="feeding-meta"></div>
+        <ul class="schedule" id="schedule"></ul>
+        <details class="feeding-notes">
+          <summary>How this schedule is calculated</summary>
+          <p id="feeding-explanation"></p>
+        </details>
       </div>
-      <div class="feeding-meta" id="feeding-meta"></div>
-      <ul class="schedule" id="schedule"></ul>
-      <details class="feeding-notes">
-        <summary>How this schedule is calculated</summary>
-        <p id="feeding-explanation"></p>
-      </details>
     </section>
 
-    <section class="card">
-      <div class="card-header">
-        <h2>Topics to track</h2>
-        <p class="subtitle">Quick overview of what matters for Miso right now</p>
+    <section class="panel" id="topics">
+      <button class="panel-head" type="button" aria-expanded="false" aria-controls="topics-body">
+        <span class="panel-title">Topics to track</span>
+        <span class="panel-toggle"><span class="toggle-open">Open</span><span class="toggle-close">Close</span></span>
+      </button>
+      <div class="panel-body" id="topics-body" hidden>
+        <p class="panel-lead">What matters for Miso right now — training, socialisation, grooming and more.</p>
+        <div class="topics-grid" id="topics-grid"></div>
       </div>
-      <div class="topics-grid" id="topics-grid"></div>
     </section>
 
-    <section class="card checklist-card">
-      <div class="card-header">
-        <h2>This week's focus</h2>
-        <p class="subtitle">Editable checklist — saved in your browser</p>
+    <section class="panel" id="focus">
+      <button class="panel-head" type="button" aria-expanded="false" aria-controls="focus-body">
+        <span class="panel-title">This week's focus</span>
+        <span class="panel-toggle"><span class="toggle-open">Open</span><span class="toggle-close">Close</span></span>
+      </button>
+      <div class="panel-body" id="focus-body" hidden>
+        <p class="panel-lead">Editable checklist — saved in your browser.</p>
+        <ul class="checklist" id="checklist"></ul>
+        <form class="checklist-add" id="checklist-form">
+          <input type="text" id="checklist-input" placeholder="Add a reminder…" maxlength="120" />
+          <button type="submit">Add</button>
+        </form>
       </div>
-      <ul class="checklist" id="checklist"></ul>
-      <form class="checklist-add" id="checklist-form">
-        <input type="text" id="checklist-input" placeholder="Add a reminder…" maxlength="120" />
-        <button type="submit">Add</button>
-      </form>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>Miso tracker · Last updated <span id="build-date"></span></p>
+  <footer class="site-footer">
+    <div class="page-wrap footer-inner">
+      <p class="footer-brand">MISO</p>
+      <p class="footer-copy">Toller tracker · <span id="build-date"></span></p>
+    </div>
   </footer>
 
   <script src="config.js"></script>

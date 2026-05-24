@@ -129,7 +129,7 @@ function formatCountdown(dateStr) {
   return `${Math.abs(days)} days ago`;
 }
 
-function renderHealthGroup(title, icon, items) {
+function renderHealthGroup(title, items) {
   const rows = items
     .map((item) => {
       const status = getHealthItemStatus(item);
@@ -153,7 +153,7 @@ function renderHealthGroup(title, icon, items) {
 
   return `
     <div class="health-group">
-      <h3><span class="health-group-icon">${icon}</span> ${title}</h3>
+      <h3>${title}</h3>
       <ul class="health-list">${rows}</ul>
     </div>
   `;
@@ -164,8 +164,8 @@ function renderHealthSchedule() {
   const { vaccinations, deworming } = MISO_CONFIG.health;
 
   grid.innerHTML =
-    renderHealthGroup("Vaccinations", "💉", vaccinations) +
-    renderHealthGroup("Deworming", "💊", deworming);
+    renderHealthGroup("Vaccinations", vaccinations) +
+    renderHealthGroup("Deworming", deworming);
 }
 
 function formatDateLabel(date) {
@@ -248,12 +248,12 @@ function renderTopics() {
       (t) => `
     <article class="topic" data-priority="${t.priority}">
       <div class="topic-head">
-        <span class="topic-icon">${t.icon}</span>
         <h3>${t.title}</h3>
-        <span class="priority priority-${t.priority}">${t.priority}</span>
+        <span class="topic-icon" aria-hidden="true">${t.icon}</span>
       </div>
       <p>${t.summary}</p>
       <ul>${t.items.map((i) => `<li>${i}</li>`).join("")}</ul>
+      <span class="priority">${t.priority}</span>
     </article>
   `
     )
@@ -328,9 +328,67 @@ document.getElementById("checklist-form").addEventListener("submit", (e) => {
 
 document.getElementById("build-date").textContent = new Date().toLocaleDateString("en-GB");
 
+function initPanels() {
+  document.querySelectorAll(".panel-head").forEach((button) => {
+    button.addEventListener("click", () => {
+      const expanded = button.getAttribute("aria-expanded") === "true";
+      const body = document.getElementById(button.getAttribute("aria-controls"));
+      button.setAttribute("aria-expanded", String(!expanded));
+      body.hidden = expanded;
+    });
+  });
+}
+
+function initMobileMenu() {
+  const button = document.querySelector(".menu-btn");
+  const menu = document.getElementById("mobile-menu");
+
+  button.addEventListener("click", () => {
+    const open = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!open));
+    menu.hidden = open;
+  });
+
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      button.setAttribute("aria-expanded", "false");
+      menu.hidden = true;
+    });
+  });
+}
+
+function initPillNav() {
+  const links = [...document.querySelectorAll(".pill-link")];
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute("href")))
+    .filter(Boolean);
+
+  const headerOffset = () =>
+    parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-height"), 10) + 80;
+
+  const setActive = () => {
+    const offset = window.scrollY + headerOffset();
+    let current = sections[0];
+
+    sections.forEach((section) => {
+      if (section.offsetTop - 120 <= offset) current = section;
+    });
+
+    links.forEach((link) => {
+      link.classList.toggle("is-active", link.getAttribute("href") === `#${current.id}`);
+    });
+  };
+
+  window.addEventListener("scroll", setActive, { passive: true });
+  setActive();
+}
+
 updateAge();
 setInterval(updateAge, 1000);
 renderHealthSchedule();
 renderFeedingSchedule();
 renderTopics();
 renderChecklist();
+initPanels();
+initMobileMenu();
+initPillNav();
